@@ -17,11 +17,9 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include <fcntl.h>
-
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
-
 
 size_t	ft_strlen(const char *str);
 char	*get_next_line(int fd);

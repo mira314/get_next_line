@@ -64,10 +64,34 @@ char	*ft_line(char *buffer)
 
 char	*ft_next_line(char *buffer)
 {
+	char	*line;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (!buffer[i])
+	{
+		free(buffer);
+		return (0);
+	}
+	line = (char *)malloc((ft_strlen(buffer)) - i + 1 * sizeof(char));
+	i++;
+	j = 0;
+	while (buffer[i])
+		line[j++] = buffer[i++];
+	free(buffer);
+	return (line);
 }
 
 char	*ft_drop_and_join(char *buffer, char *buf)
 {
+	char	*swap;
+
+	swap = ft_strjoin(buffer, buf);
+	free(buffer);
+	return (swap);
 }
 
 char	*get_next_line(int fd)
@@ -82,4 +106,6 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (0);
 	line = ft_line(buffer);
+	buffer = ft_next_line(buffer);
+	return (line);
 }

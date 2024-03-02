@@ -9,7 +9,6 @@
 /*   Updated: 2024/03/02 07:59:28 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "get_next_line.h"
 #include <stdlib.h>
 
@@ -17,11 +16,11 @@ char	*ft_strchr(const char *s, int c)
 {
 	char	*str;
 
-	str = (char *)string;
-	while (*str != searchedChar && *str != 0)
+	str = (char *)s;
+	while (*str != c && *s != 0)
 		str++;
-	if (*str == searchedChar)
-		return (str);
+	if (*s == c)
+		return ((char *)s);
 	else
 		return (NULL);
 }
@@ -56,10 +55,10 @@ void	*ft_calloc(size_t s1, size_t s2)
 {
 	char	*res;
 
-	res = malloc(elementSize * elementCount);
+	res = malloc(s1 * s2);
 	if (!res)
 		return (NULL);
-	ft_bzero(res, elementSize * elementCount);
+	ft_bzero(res, s1 * s2);
 	return (res);
 }
 

@@ -13,16 +13,15 @@
 #include <stdio.h>
 int main(void)
 {
+    
     int file_descriptor = open("1.txt", O_RDONLY);
     char* line = get_next_line(file_descriptor);
     line = get_next_line(file_descriptor);
      printf("%s",line);
-    line = get_next_line(file_descriptor);
 
     // Process the line
 
     // Free the memory allocated for the line
-    printf("%s",line);
     free(line);
     close(file_descriptor);
     return (0);
