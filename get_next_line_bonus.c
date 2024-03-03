@@ -1,15 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vrandria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 08:15:20 by vrandria          #+#    #+#             */
-/*   Updated: 2024/03/03 13:25:29 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/03/03 13:26:39 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_fill(int fd, char *readed, char *buffer)
 {
@@ -62,7 +62,7 @@ char	*ft_set_line(char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	*readed;
+	static char	*readed[MAX_FD];
 	char		*line;
 	char		*buffer;
 
@@ -70,18 +70,18 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		free(buffer);
-		free(readed);
-		readed = 0;
+		free(readed[fd]);
+		readed[fd] = 0;
 		buffer = 0;
 		return (0);
 	}
 	if (!buffer)
 		return (0);
-	line = ft_fill(fd, readed, buffer);
+	line = ft_fill(fd, readed[fd], buffer);
 	free(buffer);
 	buffer = 0;
 	if (!line)
 		return (0);
-	readed = ft_set_line(line);
+	readed[fd] = ft_set_line(line);
 	return (line);
 }
